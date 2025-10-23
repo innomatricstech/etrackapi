@@ -1,10 +1,6 @@
 // api/contact-us.js
-import express from "express";
 import nodemailer from "nodemailer";
 
-const router = express.Router();
-
-// Zoho transporter
 const transporter = nodemailer.createTransport({
   host: "smtp.zoho.in",
   port: 465,
@@ -15,7 +11,11 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-router.post("/contact-us", async (req, res) => {
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
   const inquiry = req.body;
 
   if (!inquiry || !inquiry.email) {
@@ -48,11 +48,9 @@ router.post("/contact-us", async (req, res) => {
   try {
     const info = await transporter.sendMail(contactMailOptions);
     console.log("✅ Contact inquiry email sent:", info.messageId);
-    res.status(200).json({ message: "Inquiry email sent successfully!" });
+    return res.status(200).json({ message: "Inquiry email sent successfully!" });
   } catch (err) {
     console.error("❌ Failed to send contact inquiry email:", err);
-    res.status(500).json({ error: "Failed to send contact inquiry email" });
+    return res.status(500).json({ error: "Failed to send contact inquiry email" });
   }
-});
-
-export default router;
+}
