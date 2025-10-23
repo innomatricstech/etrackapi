@@ -1,38 +1,27 @@
-// server.js
 import express from "express";
 import cors from "cors";
-
-// Import API routes
-import sendRouter from "./api/sendemail.js";      // Handles /send-order
-import contactRouter from "./api/contact-us.js";  // Handles /contact-us
+import contactRouter from "./api/contact-us.js";
+import orderRouter from "./api/send-order.js";
 
 const app = express();
 
-// ============================
-// MIDDLEWARE
-// ============================
-// Enable CORS for all origins (or restrict to your frontend domain)
-app.use(cors());
-// Parse JSON request bodies
+// Enable CORS
+app.use(cors({
+  origin: "*", // Replace "*" with frontend URL for production
+  methods: ["GET","POST"]
+}));
+
 app.use(express.json());
 
-// ============================
-// ROUTES
-// ============================
-// Order email route
-app.use("/send-order", sendRouter);
-// Contact form route
-app.use("/contact-us", contactRouter);
+// Mount routers
+app.use("/", contactRouter);
+app.use("/", orderRouter);
 
 // Health check
 app.get("/", (req, res) => {
-  res.send("Server is running ✅");
+  res.send("🚀 Backend server is running");
 });
 
-// ============================
-// START SERVER
-// ============================
+// Start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
