@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: "roofsketch@etracktitle.com",
-    pass: "r5FvJnaDutfV", // Zoho App Password
+    pass: "r5FvJnaDutfV", // Zoho App Password (CHANGE TO ENV VARS)
   },
 });
 
@@ -39,8 +39,7 @@ router.post("/send-order", async (req, res) => {
   };
 
   try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log("✅ Order email sent:", info.messageId);
+    await transporter.sendMail(mailOptions);
     res.status(200).json({ message: "Order email sent successfully!" });
   } catch (err) {
     console.error("❌ Failed to send order email:", err);
