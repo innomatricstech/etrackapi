@@ -1,7 +1,7 @@
 // server.js
 import express from "express";
 import nodemailer from "nodemailer";
-
+const router = express.Router();
 const app = express();
 app.use(cors());
 
@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport({
 // ===================================================================
 // 1. ORDER CONFIRMATION ROUTE: /send-order (Existing Route)
 // ===================================================================
-app.post("/send-order", async (req, res) => {
+router.post("/send-order", async (req, res) => {
   const order = req.body;
 
   const mailOptions = {
@@ -114,4 +114,4 @@ app.post("/send-order", async (req, res) => {
   }
 });
 
-export default app;
+export default router;
