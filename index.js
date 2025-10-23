@@ -23,11 +23,5 @@ app.get("/", (req, res) => {
   res.send("🚀 Backend server is running");
 });
 
-// 🚨 CRITICAL FIX: The code below that started the local server is REMOVED.
 
-// Start server
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
-
-// EXPORT the Express app instance for Vercel's serverless handler
 export default app;
