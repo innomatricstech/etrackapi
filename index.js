@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import contactRouter from "./api/contact-us.js";
-import orderRouter from "./api/send-order.js";
+import contactRouter from "./api/contact-us.js"; // Note: This assumes contact-us.js is in ./api/ for local dev
+import orderRouter from "./api/send-order.js"; // Note: This assumes send-order.js is in ./api/ for local dev
 
 const app = express();
 
@@ -14,6 +14,10 @@ app.use(cors({
 app.use(express.json());
 
 // Mount routers
+// Note: When deployed to Vercel, the routes in contact-us.js 
+// and sendemail.js (which you named send-order.js below) 
+// would typically be accessed directly via their file paths if in the /api folder.
+// However, the current setup routes them to the root path.
 app.use("/", contactRouter);
 app.use("/", orderRouter);
 
