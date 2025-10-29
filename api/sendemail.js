@@ -67,7 +67,7 @@ router.post("/send-order", async (req, res) => {
           <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top: 10px; font-size: 1em; color: #333;">
             <tr><td style="padding: 5px 0; width: 35%;"><strong>Product Ordered:</strong></td><td style="padding: 5px 0; font-weight: 600;">${order.product_name} (Qty: ${order.product_quantity})</td></tr>
             <tr><td style="padding: 5px 0; width: 35%;"><strong>Reports Selected:</strong></td><td style="padding: 5px 0;">${order.product_reports_selected}</td></tr>
-            <tr><td style="padding: 5px 0; width: 35%;"><strong>Billing Address:</strong></td><td style="padding: 5px 0;">${order.shipping_address}</td></tr>
+            <tr><td style="padding: 5px 0; width: 35%;"><strong>Property Address:</strong></td><td style="padding: 5px 0;">${order.shipping_address}</td></tr>
             <tr><td style="padding: 5px 0; width: 35%;"><strong>Primary Pitch:</strong></td><td style="padding: 5px 0;">${order.primary_pitch || 'N/A'}</td></tr>
             <tr><td style="padding: 5px 0; width: 35%;"><strong>Secondary Pitch:</strong></td><td style="padding: 5px 0;">${order.secondary_pitch || 'N/A'}</td></tr>
             <tr><td style="padding: 5px 0; width: 35%;"><strong>Facets:</strong></td><td style="padding: 5px 0;">${order.number_of_facets || 'N/A'}</td></tr>
